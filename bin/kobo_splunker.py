@@ -196,11 +196,12 @@ def request_api(username, password, uri=''):
 
     try:
         api_response = json.load(urllib2.urlopen(request))
-    except Exception, e:
-        logging.error("Could not access API for KoBoToolbox: %s" % str(e))
-        sys.exit()
 
-    logging.debug("KoBoToolbox API response: %s" % json.dumps(api_response))
+        logging.debug("KoBoToolbox API response: %s" % json.dumps(api_response))
+    except Exception, e:
+        api_response = None
+
+        logging.error("Could not access API for KoBoToolbox: %s" % str(e))
 
     return api_response
 
